@@ -1,0 +1,35 @@
+*{
+    margin: 0px;
+}
+#main, #canvas{
+    border: 2px solid black;
+}
+#canvas{
+    width: 80%;
+    margin: auto;
+    height: 800px;
+    padding: 10px;
+}
+.headings{
+    margin: 3px;
+    padding-left: 5px;
+}
+#trans-area{
+    border: 2px solid black;
+    height: 530px;
+    width: 500px;
+    margin: auto;
+    margin-top: 80px;
+    border-radius: 10px;
+}
+#t-details{
+    padding: 25px 0px;
+    text-align: center;
+}
+.amt{
+    width:275px;
+    margin:auto;
+}
+#create-btn{
+    text-align: center;
+}
