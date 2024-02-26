@@ -1,4 +1,34 @@
-this is to check miltestones
-checking single milestone.
+user - general 
 
-checking multiple milestones
+id
+username
+password
+type - admin/general (default)
+
+Transaction
+
+id 
+t_name
+t_type
+t_date - text (selected)/datetime object 
+s_city
+d_city
+description 
+internal_status - [requested (default), quoted, paid]
+delivery_status - [in-process (default), processed at source, dispatched from source, in transit, arrived at destination, out for delivery, delivered]
+amount
+delivery_date
+user_id
+
+City 
+
+id
+city_name
+
+user <---> transaction ---> one to many
+
+23/02/2024 
+
+date = datetime.datetime(2024, 02, 23)
+
+date

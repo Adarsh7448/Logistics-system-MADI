@@ -10,18 +10,21 @@
         <div id="canvas">
             <div id="form-body">
                 <h1>Register Form</h1>
+                <form action="/register" method="post">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Adarsh123">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="user123" name="u_name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleFormControlInput1">
-                  </div>
-                  <div style="text-align: center;">
-                    <a type="button" class="btn btn-primary" href="/templates/admin_dash.html">Register</a><br>
-                  Already registered? <a href="/userlogin">login.</a>
+                        <label for="pwd" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="pwd" name="pwd" required>
                     </div>
+                    
+                  <input type="submit" class="btn btn-primary" value="Register"> 
+                 </form>
+                 <div style="text-align: center;">
+                  Are you a new user? <a href="/userlogin">login.</a>
+                </div>
             </div>
         </div>
     </div>
