@@ -17,13 +17,16 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link active" aria-current="page" href="/templates/login.html">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="/userlogin">Logout</a>
                     <span>Admin</span>
                     
                   </div>
                 </div>
               </nav>
             <h2 class="headings">Requested Transactions</h2>
+            {% if requested_trans|length == 0 %}
+              <h4>No requested transaction</h4>
+            {% else %}
             <div id="trans-table">
               <table class="table">
                   <thead>
@@ -37,94 +40,82 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for trans in requested_trans %}
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Package X</td>
-                      <td>Chennai</td>
-                      <td>Mumbai</td>
-                      <td>02/04/2024</td>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>{{trans.t_name}}</td>
+                      <td>{{trans.s_city}}</td>
+                      <td>{{trans.d_city}}</td>
+                      <td>{{trans.t_date}}</td>
                       <td><button type="button" class="btn btn-warning">Review</button></td>
                     </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Package Y</td>
-                      <td>Chennai</td>
-                      <td>Mumbai</td>
-                      <td>02/04/2024</td>
-                      <td><button type="button" class="btn btn-warning">Review</button></td>
-                    </tr>
-                    
+                    {% endfor %}
                   </tbody>
               </table>
             </div>
+            {% endif %}
             <h2 class="headings">Payments Pending Transactions</h2>
+            {% if quoted_trans|length == 0 %}
+              <h4>No quoted transaction</h4>
+            {% else %}
             <div id="trans-table">
               <table class="table">
                   <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Package Name</th>
-                        <th scope="col">Source</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Date of request</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Package X</td>
-                        <td>Chennai</td>
-                        <td>Mumbai</td>
-                        <td>02/04/2024</td>
-                        <td><button type="button" class="btn btn-danger">Cancel</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Package Y</td>
-                        <td>Chennai</td>
-                        <td>Mumbai</td>
-                        <td>02/04/2024</td>
-                        <td><button type="button" class="btn btn-danger">Cancel</button></td>
-                      </tr>
-                      
-                    </tbody>
-                </table>
-              </div>
-              <h2 class="headings">Paid Transactions</h2>
-              <div id="trans-table">
-                <table class="table">
-                    <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Package Name</th>
-                          <th scope="col">Source</th>
-                          <th scope="col">Destination</th>
-                          <th scope="col">Date of request</th>
-                          <th scope="col">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Package X</td>
-                          <td>Chennai</td>
-                          <td>Mumbai</td>
-                          <td>02/04/2024</td>
-                          <td><button type="button" class="btn btn-info">Update Status</button></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Package Y</td>
-                          <td>Chennai</td>
-                          <td>Mumbai</td>
-                          <td>02/04/2024</td>
-                          <td><button type="button" class="btn btn-info">Update Status</button></td>
-                        </tr>
-                        
-                      </tbody>
-                  </table>
-            </div>   
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Package Name</th>
+                      <th scope="col">Source</th>
+                      <th scope="col">Destination</th>
+                      <th scope="col">Date of request</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for trans in quoted_trans %}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>{{trans.t_name}}</td>
+                      <td>{{trans.s_city}}</td>
+                      <td>{{trans.d_city}}</td>
+                      <td>{{trans.t_date}}</td>
+                      <td><button type="button" class="btn btn-danger">Cancel</button></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            {% endif %}
+            <h2 class="headings">Paid Transactions</h2>
+            {% if paid_trans|length == 0 %}
+            <h4>No paid transaction</h4>
+          {% else %}
+          <div id="trans-table">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Package Name</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Date of request</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for trans in paid_trans %}
+                  <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{trans.t_name}}</td>
+                    <td>{{trans.s_city}}</td>
+                    <td>{{trans.d_city}}</td>
+                    <td>{{trans.t_date}}</td>
+                    <td><button type="button" class="btn btn-info">Update status</button></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+          {% endif %}
         </div>
     </div>
 </body>

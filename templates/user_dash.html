@@ -18,14 +18,17 @@
                     </form>
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                     <a class="nav-link active" aria-current="page" href="/userlogin">Logout</a>
-                    <span>{{u_name}}</span>
+                    <span>{{user.username}}</span>
                     
                   </div>
                 </div>
               </nav>
             <h2 class="headings">Your Transactions</h2>
+            {% if transactions|length == 0 %}
+            <h3>You do not have any transaction.</h3>
+            {% else %}
             <div id="trans-table">
-            <table class="table">
+              <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -38,46 +41,22 @@
                   </tr>
                 </thead>
                 <tbody>
+                {% for trans in transactions %}  <!-- trans = <Transaction 2>-->
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Package X</td>
-                    <td>Chennai</td>
-                    <td>Mumbai</td>
-                    <td>02/04/2024</td>
-                    <td>requested</td>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{trans.t_name}}</td>
+                    <td>{{trans.s_city}}</td>
+                    <td>{{trans.d_city}}</td>
+                    <td>{{trans.t_date}}</td>
+                    <td>{{trans.internal_status}}</td>
                     <td>to be notified</td>
                   </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Package Y</td>
-                    <td>Chennai</td>
-                    <td>Mumbai</td>
-                    <td>02/04/2024</td>
-                    <td>requested</td>
-                    <td>to be notified</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Package Z</td>
-                    <td>Chennai</td>
-                    <td>Mumbai</td>
-                    <td>02/04/2024</td>
-                    <td>1500 </td>
-                    <td><button type="button" class="btn btn-primary">Pay Now</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Package Z</td>
-                    <td>Chennai</td>
-                    <td>Mumbai</td>
-                    <td>02/04/2024</td>
-                    <td>1500 </td>
-                    <td><button type="button" class="btn btn-primary">Pay Now</button></td>
-                  </tr>
+                {% endfor %}
                 </tbody>
               </table>
             </div>
-        <button type="button" class="btn btn-primary">Create +</button>   
+            {% endif %}
+        <a href="/transaction_create/{{user.id}}"><button type="button" class="btn btn-primary">Create +</button></a>   
         </div>
     </div>
 </body>

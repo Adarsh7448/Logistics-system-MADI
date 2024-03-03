@@ -10,14 +10,14 @@
         <div id="canvas">
             <div id="trans-area">
                 <h2 class="headings">Create a new transaction</h2>
-                <form class="row g-3 p-2" action="#">
+                <form class="row g-3 p-2" action="/transaction_create/{{user.id}}" method="post">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Transaction Name:</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <label for="t_name" class="form-label">Transaction Name:</label>
+                        <input type="text" class="form-control" id="t_name" name="t_name">
                     </div>
                     <div>
-                        <label for="exampleDataList" class="form-label">Transaction Type:</label>
-                        <input class="form-control" list="transaction-type" id="exampleDataList">
+                        <label for="t-type" class="form-label">Transaction Type:</label>
+                        <input class="form-control" list="transaction-type" id="t_type" name="t_type">
                         <datalist id="transaction-type">
                             <option value="Heavy Goods">
                             <option value="Liquid">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="cities">
                         <label for="source" class="form-label">Source:</label>
-                        <input class="form-control" list="source-cities" id="source">
+                        <input class="form-control" list="source-cities" id="source" name="s_city">
                         <datalist id="source-cities">
                             <option value="Nagpur">
                             <option value="Mumbai">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="cities">
                         <label for="destination" class="form-label">Destination:</label>
-                        <input class="form-control" list="dest-cities" id="destination">
+                        <input class="form-control" list="dest-cities" id="destination" name="d_city">
                         <datalist id="dest-cities">
                             <option value="Nagpur">
                             <option value="Mumbai">
@@ -49,11 +49,11 @@
                         </datalist>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Description:</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
                     <div id="create-btn">
-                        <button type="submit" class="btn btn-primary mb-3">Create</button>
+                        <input type="submit" class="btn btn-primary mb-3" value="Create">
                     </div>
                 </form>
             </div>

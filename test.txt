@@ -32,3 +32,14 @@ user <---> transaction ---> one to many
 date = datetime.datetime(2024, 02, 23)
 
 date
+
+
+user login - admin
+           - user 
+
+admin endpoint
+general user endpoint 
+
+/admin 
+
+/user/id - dynamic - convertor
