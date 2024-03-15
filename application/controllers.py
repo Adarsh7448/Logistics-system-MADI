@@ -74,3 +74,20 @@ def trans_create(user_id):
         return redirect(f'/user/{user.id}')
 
     return render_template('create_transac.html', user = user)
+
+@app.route('/review/<int:trans_id>', methods = ['GET', 'POST'])
+def review(trans_id):
+    this_trans = Transaction.query.get(trans_id)
+    if request.method == "POST":
+        d_date = request.form.get('d_date')
+        amt = request.form.get('amt')
+        this_trans.delivery_date = d_date
+        this_trans.amount = amt
+        this_trans.internal_status = "quoted"
+        db.session.commit()
+        return redirect('/admin')
+
+    return render_template('review.html', this_trans = this_trans)
+
+# @app.route('')
+

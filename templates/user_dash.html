@@ -48,8 +48,18 @@
                     <td>{{trans.s_city}}</td>
                     <td>{{trans.d_city}}</td>
                     <td>{{trans.t_date}}</td>
-                    <td>{{trans.internal_status}}</td>
-                    <td>to be notified</td>
+                    {% if trans.internal_status == "requested" %}
+                           <td>{{trans.internal_status}}</td>
+                    {% else %}
+                           <td>
+                              <a href="/review/{{trans.id}}"><button type="button" class="btn btn-primary">Pay Now</button></a>
+                           </td>
+                    {% endif %}
+                    {% if trans.internal_status == "requested" %}
+                           <td>to be notified</td>
+                    {% else %}
+                           <td>{{trans.amount}}</td>
+                    {% endif %}
                   </tr>
                 {% endfor %}
                 </tbody>
