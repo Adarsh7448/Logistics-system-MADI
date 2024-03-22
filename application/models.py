@@ -11,6 +11,7 @@ class User(db.Model):
 class Transaction(db.Model):
     id = db.Column(db.Integer(), primary_key = True)
     t_name = db.Column(db.String(), nullable = False)
+    t_search_name = db.Column(db.String(), nullable = False)
     t_type = db.Column(db.String(), nullable = False)
     t_date = db.Column(db.String(), nullable = False)
     delivery_date = db.Column(db.String(), default = "To be updated")

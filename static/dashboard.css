@@ -2,13 +2,17 @@
     margin: 0px;
 }
 #main, #canvas{
-    border: 2px solid black;
+    /* border: 2px solid black; */
+}
+nav{
+    background-color: rgba(247, 175, 108, 0.904) ;
 }
 #canvas{
     width: 80%;
     margin: auto;
     height: 800px;
     padding: 10px;
+    background-color: rgba(248, 212, 179, 0.37);
 }
 .headings{
     margin: 3px;

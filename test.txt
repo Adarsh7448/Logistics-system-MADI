@@ -43,3 +43,15 @@ general user endpoint
 /admin 
 
 /user/id - dynamic - convertor
+
+
+
+Chennai ---> chennai chen   nai 
+
+chennai
+
+
+Transaction to my parents ---> transactiontomyparents 
+
+
+Tran Saction 1 ----> transaction1

@@ -8,6 +8,7 @@ def create_app():
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///lmsdata.sqlite3"
     db.init_app(app)
+    
     app.app_context().push()
 
     return app
@@ -16,6 +17,9 @@ app = create_app()
 
 from application.controllers import *
 # from application.models import *
+
+# with app.app_context():
+#     # add your code here
 
 if __name__ == "__main__":
     app.run()

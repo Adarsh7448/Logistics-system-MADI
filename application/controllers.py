@@ -10,6 +10,15 @@ import datetime
 # @app.route('/')
 # def something():
 
+# Transaction One ----> transactionone
+
+def raw(text): # text = Transaction One
+    split_list = text.split() #----> list ['Transaction', 'One']
+    src_word = ''
+    for word in split_list:
+        src_word += word.lower()
+    return src_word
+
 @app.route('/userlogin', methods = ['GET', 'POST'])
 def user_login():
     if request.method == 'POST':
@@ -68,7 +77,7 @@ def trans_create(user_id):
         s_city = request.form.get('s_city')
         d_city = request.form.get('d_city')
         description = request.form.get('description')
-        new_trans = Transaction(t_name = t_name, t_type = t_type, t_date = datetime.datetime.now(), s_city = s_city, d_city = d_city, decription = description, user_id = user.id)
+        new_trans = Transaction(t_name = t_name, t_search_name = raw(t_name), t_type = t_type, t_date = datetime.datetime.now(), s_city = s_city, d_city = d_city, decription = description, user_id = user.id)
         db.session.add(new_trans)
         db.session.commit()
         return redirect(f'/user/{user.id}')
@@ -89,5 +98,34 @@ def review(trans_id):
 
     return render_template('review.html', this_trans = this_trans)
 
-# @app.route('')
+@app.route('/delete/<int:id>')
+def cancel_trans(id):
+    del_trans = Transaction.query.get(id)
+    del_trans.internal_status = "cancelled"
+    db.session.commit()
+    return redirect('/admin')
+
+@app.route('/search')
+def text_search():
+    srch_word = request.args.get('srch_word')
+    srch_word = "%"+raw(srch_word)+"%"
+    srch_city = "%"+srch_word.lower()+"%"
+    srch_type = "%"+srch_word.lower()+"%"
+    t_names = Transaction.query.filter(Transaction.t_search_name.like(srch_word)).all()
+    t_s_city = Transaction.query.filter(Transaction.s_city.like(srch_city)).all()
+    t_d_city = Transaction.query.filter(Transaction.d_city.like(srch_city)).all()
+    t_types = Transaction.query.filter(Transaction.t_type.like(srch_type)).all() # searches for raw transaction name
+    search_results = t_names + t_s_city + t_d_city + t_types
+    return render_template('srch_result.html', search_results = search_results)
+
+    # records with transaction name 
+    
+    # records with transaction type --->
+    # records based on source cities ---->
+
+    # records based on destination cities ---->
+    
+    # transaction
+
+
 
