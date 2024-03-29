@@ -2,6 +2,9 @@ from flask import Flask, render_template, redirect, request
 from flask import current_app as app
 from .models import *
 import datetime
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("Agg") #tkAgg
 
 # http://127.0.0.1:5000/  base url
 # http://127.0.0.1:5000/userlogin 
@@ -127,5 +130,24 @@ def text_search():
     
     # transaction
 
+@app.route('/stats')
+def show_stats():
+    transactions = Transaction.query.all()
+    # liquid = 0
+    types = []
+    s_cities = []
+    for trans in transactions:
+        # if trans.t_type == "liquid":
+        #     liquid+=1
+        types.append(trans.t_type)
+        s_cities.append(trans.s_city)
+    plt.clf()
+    plt.hist(types)
+    plt.savefig('static/img1.png')
+    plt.clf()
+    plt.hist(s_cities)
+    plt.savefig('static/img2.png')
+    
+    return render_template('summary.html')
 
 
